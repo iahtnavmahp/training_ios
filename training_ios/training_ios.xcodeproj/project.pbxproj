@@ -21,6 +21,10 @@
 		B4C311E027E0840B00A43E3A /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C311DE27E0840B00A43E3A /* AddViewController.swift */; };
 		B4C311E127E0840B00A43E3A /* AddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C311DF27E0840B00A43E3A /* AddViewController.xib */; };
 		B4C311E327E08FE400A43E3A /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C311E227E08FE400A43E3A /* Extension.swift */; };
+		B4CB1ADA27E1032E0059097F /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB1AD927E1032E0059097F /* APIManager.swift */; };
+		B4CB1ADD27E103530059097F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB1ADC27E103530059097F /* Person.swift */; };
+		B4CB1ADF27E1074D0059097F /* API.Persons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB1ADE27E1074D0059097F /* API.Persons.swift */; };
+		B4CB1AE127E10B760059097F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB1AE027E10B760059097F /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,10 @@
 		B4C311DE27E0840B00A43E3A /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		B4C311DF27E0840B00A43E3A /* AddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddViewController.xib; sourceTree = "<group>"; };
 		B4C311E227E08FE400A43E3A /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		B4CB1AD927E1032E0059097F /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		B4CB1ADC27E103530059097F /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		B4CB1ADE27E1074D0059097F /* API.Persons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.Persons.swift; sourceTree = "<group>"; };
+		B4CB1AE027E10B760059097F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +80,8 @@
 		B4C311B027E0212800A43E3A /* training_ios */ = {
 			isa = PBXGroup;
 			children = (
+				B4CB1ADB27E103360059097F /* Model */,
+				B4CB1AD827E1030E0059097F /* APIManager */,
 				B4C311DD27E083E900A43E3A /* AddView */,
 				B4C311D327E05D7600A43E3A /* HomeView */,
 				B4C311D027E04F1700A43E3A /* SaveFileToDocuments */,
@@ -125,6 +135,7 @@
 				B4C311D827E05E7D00A43E3A /* Cells */,
 				B4C311D427E05D8D00A43E3A /* HomeViewController.swift */,
 				B4C311D527E05D8D00A43E3A /* HomeViewController.xib */,
+				B4CB1AE027E10B760059097F /* HomeViewModel.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -145,6 +156,23 @@
 				B4C311DF27E0840B00A43E3A /* AddViewController.xib */,
 			);
 			path = AddView;
+			sourceTree = "<group>";
+		};
+		B4CB1AD827E1030E0059097F /* APIManager */ = {
+			isa = PBXGroup;
+			children = (
+				B4CB1AD927E1032E0059097F /* APIManager.swift */,
+				B4CB1ADE27E1074D0059097F /* API.Persons.swift */,
+			);
+			path = APIManager;
+			sourceTree = "<group>";
+		};
+		B4CB1ADB27E103360059097F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B4CB1ADC27E103530059097F /* Person.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,9 +249,13 @@
 			files = (
 				B4C311E327E08FE400A43E3A /* Extension.swift in Sources */,
 				B4C311DB27E05E9E00A43E3A /* HomeCollectionViewCell.swift in Sources */,
+				B4CB1ADA27E1032E0059097F /* APIManager.swift in Sources */,
 				B4C311B227E0212800A43E3A /* AppDelegate.swift in Sources */,
+				B4CB1ADD27E103530059097F /* Person.swift in Sources */,
 				B4C311E027E0840B00A43E3A /* AddViewController.swift in Sources */,
+				B4CB1ADF27E1074D0059097F /* API.Persons.swift in Sources */,
 				B4C311C827E022E500A43E3A /* SaveDataViewController.swift in Sources */,
+				B4CB1AE127E10B760059097F /* HomeViewModel.swift in Sources */,
 				B4C311CC27E02E2900A43E3A /* UserDefaultsManager.swift in Sources */,
 				B4C311D227E04F5E00A43E3A /* FileDocumentManager.swift in Sources */,
 				B4C311CF27E0433D00A43E3A /* KeychainManager.swift in Sources */,

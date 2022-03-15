@@ -9,13 +9,13 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arr.count
+        return viewModel.persons.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = myCollectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell
         cell.btnDel.tag = indexPath.row
-        cell.lblTitle?.text = String(arr[indexPath.row])
+        cell.lblTitle?.text = viewModel.persons[indexPath.row].subtitle
         
         cell.btnDel.addTarget(self, action: #selector(delItem), for: .touchUpInside)
         return cell
@@ -39,6 +39,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     let listIcon = UIImage(systemName: "text.justify")
     let collectionIcon = UIImage(systemName: "squareshape.split.3x3")
     var arr = [1,2,3,4,5,6,7,8,9,0]
+    var viewModel = HomeViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib1 = UINib(nibName: "HomeCollectionViewCell", bundle:nil)
@@ -57,7 +58,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         changeList.action = #selector(changeAction)
         navigationItem.rightBarButtonItems = [addItem,changeList]
         navigationItem.leftBarButtonItem = editItem
-        
+        getData()
         // Do any additional setup after loading the view.
     }
     @objc func addAction(_ button:UIBarButtonItem!) {
@@ -95,7 +96,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
     }
     @IBAction func getAction(_ sender: Any) {
-        
+        print("sync")
+        getData()
     }
     @objc func delItem(sender:UIButton){
           
@@ -109,6 +111,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
        
         
       }
+    func getData(){
+        viewModel.loadAPI { (done, msg) in
+            if done {
+                print("success")
+                self.myCollectionView.reloadData()
+            } else {
+                print("API ERROR: \(msg)")
+            }
+        }
+    }
     /*
      // MARK: - Navigation
      

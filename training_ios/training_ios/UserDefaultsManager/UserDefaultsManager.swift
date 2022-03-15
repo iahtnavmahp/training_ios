@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct Person: Codable {
+struct Person1: Codable {
     let name: String
     let age: Int
 }
@@ -26,7 +26,7 @@ class UserDefaultsManager {
         let favoriteFruits = userdefault.object(forKey: "SimpleData") as! T
         print("data: \(favoriteFruits)")
     }
-    func SaveDataObj(person:Person){
+    func SaveDataObj(person:Person1){
         let encoder = JSONEncoder()
         if let encodedUser = try? encoder.encode(person) {
             userdefault.set(encodedUser, forKey: "ObjData")
@@ -34,7 +34,7 @@ class UserDefaultsManager {
         
         if let savedPersonData = userdefault.object(forKey: "ObjData") as? Data {
             let decoder = JSONDecoder()
-            if let savedPerson = try? decoder.decode(Person.self, from: savedPersonData) {
+            if let savedPerson = try? decoder.decode(Person1.self, from: savedPersonData) {
                 print("person: \(savedPerson)")
             }
         }
