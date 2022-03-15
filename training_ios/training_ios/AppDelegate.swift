@@ -14,9 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let vc = SaveDataViewController()
+        let vc = HomeViewController()
         vc.view.backgroundColor = .white
-        window?.rootViewController = vc
+        let navi = UINavigationController(rootViewController: vc)
+        navi.navigationBar.backgroundColor = .cyan
+        window?.rootViewController = navi
         window?.makeKeyAndVisible()
         return true
     }

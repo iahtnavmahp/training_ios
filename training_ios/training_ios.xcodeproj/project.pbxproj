@@ -11,6 +11,16 @@
 		B4C311BB27E0212900A43E3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4C311BA27E0212900A43E3A /* Assets.xcassets */; };
 		B4C311C827E022E500A43E3A /* SaveDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C311C627E022E500A43E3A /* SaveDataViewController.swift */; };
 		B4C311C927E022E500A43E3A /* SaveDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C311C727E022E500A43E3A /* SaveDataViewController.xib */; };
+		B4C311CC27E02E2900A43E3A /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C311CB27E02E2900A43E3A /* UserDefaultsManager.swift */; };
+		B4C311CF27E0433D00A43E3A /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C311CE27E0433D00A43E3A /* KeychainManager.swift */; };
+		B4C311D227E04F5E00A43E3A /* FileDocumentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C311D127E04F5E00A43E3A /* FileDocumentManager.swift */; };
+		B4C311D627E05D8D00A43E3A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C311D427E05D8D00A43E3A /* HomeViewController.swift */; };
+		B4C311D727E05D8D00A43E3A /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C311D527E05D8D00A43E3A /* HomeViewController.xib */; };
+		B4C311DB27E05E9E00A43E3A /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C311D927E05E9E00A43E3A /* HomeCollectionViewCell.swift */; };
+		B4C311DC27E05E9E00A43E3A /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C311DA27E05E9E00A43E3A /* HomeCollectionViewCell.xib */; };
+		B4C311E027E0840B00A43E3A /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C311DE27E0840B00A43E3A /* AddViewController.swift */; };
+		B4C311E127E0840B00A43E3A /* AddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C311DF27E0840B00A43E3A /* AddViewController.xib */; };
+		B4C311E327E08FE400A43E3A /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C311E227E08FE400A43E3A /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +30,16 @@
 		B4C311BF27E0212900A43E3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4C311C627E022E500A43E3A /* SaveDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDataViewController.swift; sourceTree = "<group>"; };
 		B4C311C727E022E500A43E3A /* SaveDataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SaveDataViewController.xib; sourceTree = "<group>"; };
+		B4C311CB27E02E2900A43E3A /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		B4C311CE27E0433D00A43E3A /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		B4C311D127E04F5E00A43E3A /* FileDocumentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDocumentManager.swift; sourceTree = "<group>"; };
+		B4C311D427E05D8D00A43E3A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B4C311D527E05D8D00A43E3A /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		B4C311D927E05E9E00A43E3A /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		B4C311DA27E05E9E00A43E3A /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
+		B4C311DE27E0840B00A43E3A /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		B4C311DF27E0840B00A43E3A /* AddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddViewController.xib; sourceTree = "<group>"; };
+		B4C311E227E08FE400A43E3A /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,10 +72,16 @@
 		B4C311B027E0212800A43E3A /* training_ios */ = {
 			isa = PBXGroup;
 			children = (
+				B4C311DD27E083E900A43E3A /* AddView */,
+				B4C311D327E05D7600A43E3A /* HomeView */,
+				B4C311D027E04F1700A43E3A /* SaveFileToDocuments */,
+				B4C311CD27E0432A00A43E3A /* KeychainManager */,
+				B4C311CA27E02E0400A43E3A /* UserDefaultsManager */,
 				B4C311C527E022CA00A43E3A /* SaveData */,
 				B4C311B127E0212800A43E3A /* AppDelegate.swift */,
 				B4C311BA27E0212900A43E3A /* Assets.xcassets */,
 				B4C311BF27E0212900A43E3A /* Info.plist */,
+				B4C311E227E08FE400A43E3A /* Extension.swift */,
 			);
 			path = training_ios;
 			sourceTree = "<group>";
@@ -67,6 +93,58 @@
 				B4C311C727E022E500A43E3A /* SaveDataViewController.xib */,
 			);
 			path = SaveData;
+			sourceTree = "<group>";
+		};
+		B4C311CA27E02E0400A43E3A /* UserDefaultsManager */ = {
+			isa = PBXGroup;
+			children = (
+				B4C311CB27E02E2900A43E3A /* UserDefaultsManager.swift */,
+			);
+			path = UserDefaultsManager;
+			sourceTree = "<group>";
+		};
+		B4C311CD27E0432A00A43E3A /* KeychainManager */ = {
+			isa = PBXGroup;
+			children = (
+				B4C311CE27E0433D00A43E3A /* KeychainManager.swift */,
+			);
+			path = KeychainManager;
+			sourceTree = "<group>";
+		};
+		B4C311D027E04F1700A43E3A /* SaveFileToDocuments */ = {
+			isa = PBXGroup;
+			children = (
+				B4C311D127E04F5E00A43E3A /* FileDocumentManager.swift */,
+			);
+			path = SaveFileToDocuments;
+			sourceTree = "<group>";
+		};
+		B4C311D327E05D7600A43E3A /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				B4C311D827E05E7D00A43E3A /* Cells */,
+				B4C311D427E05D8D00A43E3A /* HomeViewController.swift */,
+				B4C311D527E05D8D00A43E3A /* HomeViewController.xib */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
+		B4C311D827E05E7D00A43E3A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B4C311D927E05E9E00A43E3A /* HomeCollectionViewCell.swift */,
+				B4C311DA27E05E9E00A43E3A /* HomeCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		B4C311DD27E083E900A43E3A /* AddView */ = {
+			isa = PBXGroup;
+			children = (
+				B4C311DE27E0840B00A43E3A /* AddViewController.swift */,
+				B4C311DF27E0840B00A43E3A /* AddViewController.xib */,
+			);
+			path = AddView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +206,9 @@
 			files = (
 				B4C311BB27E0212900A43E3A /* Assets.xcassets in Resources */,
 				B4C311C927E022E500A43E3A /* SaveDataViewController.xib in Resources */,
+				B4C311E127E0840B00A43E3A /* AddViewController.xib in Resources */,
+				B4C311D727E05D8D00A43E3A /* HomeViewController.xib in Resources */,
+				B4C311DC27E05E9E00A43E3A /* HomeCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +219,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4C311E327E08FE400A43E3A /* Extension.swift in Sources */,
+				B4C311DB27E05E9E00A43E3A /* HomeCollectionViewCell.swift in Sources */,
 				B4C311B227E0212800A43E3A /* AppDelegate.swift in Sources */,
+				B4C311E027E0840B00A43E3A /* AddViewController.swift in Sources */,
 				B4C311C827E022E500A43E3A /* SaveDataViewController.swift in Sources */,
+				B4C311CC27E02E2900A43E3A /* UserDefaultsManager.swift in Sources */,
+				B4C311D227E04F5E00A43E3A /* FileDocumentManager.swift in Sources */,
+				B4C311CF27E0433D00A43E3A /* KeychainManager.swift in Sources */,
+				B4C311D627E05D8D00A43E3A /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
