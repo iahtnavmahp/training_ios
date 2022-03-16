@@ -22,8 +22,10 @@ struct Persons {
                 
             case .success(let data):
                 if let data = data {
-                    print(data)
+                    
+                    print("check \(UserDefaultsManager.shared().checkDataSever(data: data))")
                     //parse data
+                    
                     let json = data.toJSON2()
                     let results = json as! [JSON]
                     

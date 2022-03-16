@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct Person { 
+struct Person:Encodable { 
     var title:String
     var subtitle:String
     var image:String
@@ -14,5 +14,10 @@ struct Person {
         self.title = json["title"] as! String
         self.subtitle = json["subtitle"] as! String
         self.image = json["image"] as! String
+    }
+    init(title:String,subtitle:String,image:String) {
+        self.title = title
+        self.subtitle = subtitle
+        self.image = image
     }
 }

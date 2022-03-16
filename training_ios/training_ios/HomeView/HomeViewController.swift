@@ -7,27 +7,9 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.persons.count
-    }
+class HomeViewController: UIViewController {
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = myCollectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell
-        cell.btnDel.tag = indexPath.row
-        cell.lblTitle?.text = viewModel.persons[indexPath.row].subtitle
-        
-        cell.btnDel.addTarget(self, action: #selector(delItem), for: .touchUpInside)
-        return cell
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt
-                            indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (myCollectionView.frame.width)/LorG - 10,height: 80)
-    }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
-    }
-   
+    
     @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var btnSync: UIButton!
     var stateBtn:Int8 = 0
@@ -38,7 +20,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var isChange = true
     let listIcon = UIImage(systemName: "text.justify")
     let collectionIcon = UIImage(systemName: "squareshape.split.3x3")
-    var arr = [1,2,3,4,5,6,7,8,9,0]
     var viewModel = HomeViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,13 +39,30 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         changeList.action = #selector(changeAction)
         navigationItem.rightBarButtonItems = [addItem,changeList]
         navigationItem.leftBarButtonItem = editItem
-        getData()
+        
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if viewModel.isReload == 1{
+            myCollectionView.reloadData()
+            print("reloadData")
+            
+            viewModel.isReload = 0
+        }else if viewModel.isReload == 2{
+            myCollectionView.reloadItems(at: [viewModel.idxPath])
+           
+            print("reload\(viewModel.isReload)")
+            viewModel.isReload = 0
+        }
+
     }
     @objc func addAction(_ button:UIBarButtonItem!) {
         print("taped addItem")
         let vc = AddViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+        vc.isScr = true
+        vc.viewModel = viewModel
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     @objc func changeAction(_ button:UIBarButtonItem!) {
@@ -83,6 +81,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     @objc func editAction(_ button:UIBarButtonItem!) {
         print("taped editItem")
+        print("reloadk\(viewModel.isReload)")
         if stateBtn == 0 {
             stateBtn = 1
             btnSync.isEnabled = false
@@ -100,17 +99,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         getData()
     }
     @objc func delItem(sender:UIButton){
-          
-          let indexpath = IndexPath(row: sender.tag, section: 0)
-        print(indexpath)
-//        if indexpath.row < arr.count {
-//            arr.remove(at: indexpath.row)
-//            myCollectionView.deleteItems(at: [indexpath])
-//            
-//        }
-       
         
-      }
+        let indexpath = IndexPath(row: sender.tag, section: 0)
+        print(indexpath)
+        //        if indexpath.row < arr.count {
+        //            arr.remove(at: indexpath.row)
+        //            myCollectionView.deleteItems(at: [indexpath])
+        //
+        //        }
+        
+        
+    }
     func getData(){
         viewModel.loadAPI { (done, msg) in
             if done {
@@ -121,6 +120,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
         }
     }
+
     /*
      // MARK: - Navigation
      
@@ -131,4 +131,34 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
      }
      */
     
+}
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.persons.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = myCollectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell
+        cell.btnDel.tag = indexPath.row
+        cell.lblTitle?.text = viewModel.persons[indexPath.row].subtitle
+        //        if let url = URL(string:"https://raw.githubusercontent.com/iahtnavmahp/linkImage/main/Screen%20Shot%202022-03-15%20at%2015.10.43.png"){
+        //            cell.imgAvatar.load(url: url)
+        //          }
+        cell.btnDel.addTarget(self, action: #selector(delItem), for: .touchUpInside)
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt
+                            indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (myCollectionView.frame.width)/LorG - 10,height: 80)
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath)
+        
+            let vc = AddViewController()
+            vc.isScr = false
+            viewModel.idxPath = indexPath
+            vc.viewModel = viewModel
+            self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 typealias JSON = [String: Any]
 typealias JSON2 = [Any]
 extension Data {
@@ -45,9 +46,9 @@ enum APIError: Error {
         }
     }
 }
-    
+
 typealias APICompletion<T> = (Result<T, APIError>) -> Void
-    
+
 enum APIResult {
     case success(Data?)
     case failure(APIError)
@@ -68,24 +69,26 @@ struct APIManager {
     private init() {}
     
     func request(urlString: String, completion: @escaping (APIResult) -> Void) {
-        guard let url = URL(string: urlString) else {
-            return
-        }
-        
-        let config = URLSessionConfiguration.ephemeral
-        config.waitsForConnectivity = true
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: url) { (data, _, error) in
-            DispatchQueue.main.async {
-                if let error = error {
-                    completion(.failure(.error(error.localizedDescription)))
-                } else {
-                    if let data = data {
-                        completion(.success(data))
+     
+                guard let url = URL(string: urlString) else {
+                    return
+                }
+                var testRequest = URLRequest(url: url)
+                testRequest.httpMethod = "GET"
+                let config = URLSessionConfiguration.ephemeral
+                config.waitsForConnectivity = true
+                let session = URLSession.shared
+                let dataTask = session.dataTask(with: testRequest) { (data, _, error) in
+                    DispatchQueue.main.async {
+                        if let error = error {
+                            completion(.failure(.error(error.localizedDescription)))
+                        } else {
+                            if let data = data {
+                                completion(.success(data))
+                            }
+                        }
                     }
                 }
-            }
-        }
-        dataTask.resume()
+                dataTask.resume()
     }
 }

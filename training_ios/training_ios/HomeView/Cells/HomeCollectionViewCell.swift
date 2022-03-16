@@ -11,6 +11,8 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnDel: UIButton!
     
+    @IBOutlet weak var imgAvatar: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

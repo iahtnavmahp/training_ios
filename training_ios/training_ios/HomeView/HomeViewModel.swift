@@ -9,6 +9,8 @@ import Foundation
 typealias Completion = (Bool, String) -> Void
 class HomeViewModel {
     var persons:[Person] = []
+    var isReload = 0
+    var idxPath = IndexPath(row: 0, section: 0)
     func loadAPI(completion: @escaping Completion) {
         self.persons.removeAll()
         Persons.getPerson { (result) in
@@ -21,6 +23,7 @@ class HomeViewModel {
                 self.persons.append(contentsOf: personResult.persons)
                 print(self.persons.count)
                 //call back
+                
                 completion(true, "")
             }
         }

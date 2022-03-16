@@ -39,4 +39,27 @@ class UserDefaultsManager {
             }
         }
     }
+    func checkDataSever(data:Data)->Bool{
+        if let getData = userdefault.data(forKey: "DataSever"){
+            if getData == data {
+                print("du lieu khong thay doi")
+                return false
+            }else{
+                userdefault.set(data, forKey: "DataSever")
+                print("du lieu thay doi")
+                return true
+            }
+        }
+        userdefault.set(data, forKey: "DataSever")
+       return true
+        
+    }
+    func editData(persons:[Person]){
+        let encoder = JSONEncoder()
+        if let encodedUser = try? encoder.encode(persons) {
+            userdefault.set(encodedUser, forKey: "DataSever")
+            print("succes edit")
+        }
+    }
+ 
 }
