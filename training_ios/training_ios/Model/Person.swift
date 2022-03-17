@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct Person:Encodable { 
+struct Person:Encodable,Equatable {
     var title:String
     var subtitle:String
     var image:String
@@ -20,4 +20,7 @@ struct Person:Encodable {
         self.subtitle = subtitle
         self.image = image
     }
+    static func == (lhs: Person, rhs: Person) -> Bool {
+        return lhs.title == rhs.title && lhs.image == rhs.image && lhs.subtitle == rhs.subtitle
+     }
 }

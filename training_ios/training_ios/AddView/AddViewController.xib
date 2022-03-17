@@ -24,13 +24,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G5H-xQ-wHE">
-                    <rect key="frame" x="128.33333333333331" y="89" width="171.33333333333331" height="171"/>
+                    <rect key="frame" x="128.33333333333331" y="94.333333333333329" width="171.33333333333331" height="171.33333333333337"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="G5H-xQ-wHE" secondAttribute="height" multiplier="1:1" id="dQn-sj-3jc"/>
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="44A-Zk-5up">
-                    <rect key="frame" x="71.333333333333343" y="344" width="285.33333333333326" height="288"/>
+                    <rect key="frame" x="71.333333333333343" y="349.66666666666669" width="285.33333333333326" height="288.00000000000006"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="link image" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gwE-EC-KhT">
                             <rect key="frame" x="0.0" y="0.0" width="285.33333333333331" height="34"/>
@@ -43,12 +43,12 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="sub title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tEn-5l-3B9">
-                            <rect key="frame" x="0.0" y="168" width="285.33333333333331" height="34"/>
+                            <rect key="frame" x="0.0" y="167.99999999999994" width="285.33333333333331" height="34"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYF-rB-5Hk">
-                            <rect key="frame" x="0.0" y="252" width="285.33333333333331" height="36"/>
+                            <rect key="frame" x="0.0" y="251.99999999999994" width="285.33333333333331" height="36"/>
                             <color key="backgroundColor" red="0.74509803919999995" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -67,7 +67,7 @@
                 <constraint firstItem="44A-Zk-5up" firstAttribute="top" secondItem="G5H-xQ-wHE" secondAttribute="bottom" constant="84" id="T7t-Sm-fqj"/>
                 <constraint firstItem="44A-Zk-5up" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" multiplier="1:1.5" id="Ykf-sH-hSc"/>
                 <constraint firstItem="G5H-xQ-wHE" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="bem-vJ-OzG"/>
-                <constraint firstAttribute="top" secondItem="G5H-xQ-wHE" secondAttribute="top" multiplier="0.9" constant="-80" id="n0A-km-Jrb"/>
+                <constraint firstAttribute="top" secondItem="G5H-xQ-wHE" secondAttribute="top" multiplier="0.9" constant="-85" id="n0A-km-Jrb"/>
                 <constraint firstItem="44A-Zk-5up" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="xUF-UM-LEe"/>
             </constraints>
             <point key="canvasLocation" x="33.644859813084111" y="84.233261339092877"/>

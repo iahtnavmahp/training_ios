@@ -12,10 +12,10 @@ class SaveDataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //MARK:----------------UserDefaults--------------------
-        //        let data = [1,2,3,4]
-        //        let person = Person(name: "Pham Van Thai", age: 23)
-        //        UserDefaultsManager.shared().SaveDataSimple(data: data)
-        //        UserDefaultsManager.shared().SaveDataObj(person: person)
+                let data = [1,2,3,4]
+                let person = Person1(name: "Pham Van Thai", age: 23)
+                UserDefaultsManager.shared().SaveDataSimple(data: data)
+                UserDefaultsManager.shared().SaveDataObj(person: person)
         //MARK:----------------Keychain--------------------
         //        KeychainManager.shared().SaveDataKeychain(user: "thai2", password: "thai090499")
         //        KeychainManager.shared().ReadDataKeychain()

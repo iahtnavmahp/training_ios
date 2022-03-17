@@ -23,7 +23,7 @@ struct Persons {
             case .success(let data):
                 if let data = data {
                     
-                    print("check \(UserDefaultsManager.shared().checkDataSever(data: data))")
+                    
                     //parse data
                     
                     let json = data.toJSON2()
@@ -35,6 +35,7 @@ struct Persons {
                         persons.append(person)
                     }
                     // result
+                    print("check \(UserDefaultsManager.shared().checkDataSever(data: data,list: persons))")
                     let personResult = PersonResult(persons: persons)
                     
                     //call back
