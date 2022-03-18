@@ -16,12 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let vc = HomeViewController()
         vc.view.backgroundColor = .white
-
         let homeModel = HomeViewModel()
         let navi = UINavigationController(rootViewController: vc)
         navi.navigationBar.backgroundColor = .cyan
         window?.rootViewController = navi
- 
         window?.makeKeyAndVisible()
         homeModel.loadAPI { (done, msg) in
             if done {
@@ -35,9 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return true
     }
-
-
-
 
 }
 

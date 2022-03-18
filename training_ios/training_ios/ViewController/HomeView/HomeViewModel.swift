@@ -16,13 +16,13 @@ class HomeViewModel {
         Persons.getPerson { (result) in
             switch result {
             case .failure(let error):
-                //call back
+               
                 completion(false, error.localizedDescription)
                 
             case .success(let personResult):
                 self.persons.append(contentsOf: personResult.persons)
                 print(self.persons.count)
-                //call back
+               
                 
                 completion(true, "")
             }

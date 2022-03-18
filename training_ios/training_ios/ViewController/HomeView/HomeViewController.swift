@@ -20,22 +20,7 @@ class HomeViewController: UIViewController {
     let listIcon = UIImage(systemName: "text.justify")
     let collectionIcon = UIImage(systemName: "squareshape.split.3x3")
     var viewModel = HomeViewModel()
-    func layoutDynamicCell(isLG:Int,ld:NSCollectionLayoutSpacing?)->UICollectionViewLayout{
-        
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                              heightDimension: .estimated(44))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: ld, top: .fixed(8), trailing: nil, bottom: .fixed(8))
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .estimated(50))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                       subitem: item,count: isLG)
-        
-        let section = NSCollectionLayoutSection(group: group)
-        
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -112,7 +97,6 @@ class HomeViewController: UIViewController {
             myCollectionView.reloadData()
         }
         
-        
     }
     @IBAction func getAction(_ sender: Any) {
         
@@ -146,7 +130,7 @@ class HomeViewController: UIViewController {
             }
         }
         if arrI.count > 0{
-           
+            
             let arrayR = viewModel.persons
                 .enumerated()
                 .filter { !arrI.contains($0.offset) }
@@ -171,21 +155,31 @@ class HomeViewController: UIViewController {
         let alert = UIAlertController(title: "Delete",
                                       message: "ban co muon xoa?",
                                       preferredStyle: .alert)
-
-
-         // Add action buttons to it and attach handler functions if you want to
-
-         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {_ in
             self.multiDelete()
         }))
-
-        // Show the alert by presenting it
-
+        
         self.present(alert, animated: true)
     }
     
-    
+    func layoutDynamicCell(isLG:Int,ld:NSCollectionLayoutSpacing?)->UICollectionViewLayout{
+        
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .estimated(44))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: ld, top: .fixed(8), trailing: nil, bottom: .fixed(8))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .estimated(50))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                       subitem: item,count: isLG)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
+    }
     
 }
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource{
@@ -242,8 +236,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             print("loi tai didSelectItemAt")
         }
         
-        
     }
-    
     
 }

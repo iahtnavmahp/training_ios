@@ -17,14 +17,10 @@ struct Persons {
         APIManager.shared().request(urlString: domain) { (result) in
             switch result {
             case .failure(let error):
-                //call back
                 completion(.failure(error))
                 
             case .success(let data):
                 if let data = data {
-                    
-                    
-                    //parse data
                     
                     let json = data.toJSON2()
                     let results = json as! [JSON]
@@ -34,15 +30,15 @@ struct Persons {
                         let person = Person(json: item)
                         persons.append(person)
                     }
-                    // result
+                    
                     print("check \(UserDefaultsManager.shared().checkDataSever(data: data,list: persons))")
                     let personResult = PersonResult(persons: persons)
                     
-                    //call back
+                    
                     completion(.success(personResult))
                     
                 } else {
-                    //call back
+                    
                     completion(.failure(.error("Data is not format.")))
                 }
             }
