@@ -10,6 +10,7 @@ struct Person:Encodable,Equatable {
     var title:String
     var subtitle:String
     var image:String
+    var isImg:Bool = true
     init(json: JSON) {
         self.title = json["title"] as! String
         self.subtitle = json["subtitle"] as! String
@@ -22,5 +23,5 @@ struct Person:Encodable,Equatable {
     }
     static func == (lhs: Person, rhs: Person) -> Bool {
         return lhs.title == rhs.title && lhs.image == rhs.image && lhs.subtitle == rhs.subtitle
-     }
+    }
 }

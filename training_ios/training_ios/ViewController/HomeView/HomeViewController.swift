@@ -13,7 +13,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var btnSync: UIButton!
     var stateBtn:Int8 = 0
-    
     var addItem:UIBarButtonItem!
     var changeList:UIBarButtonItem!
     var editItem:UIBarButtonItem!
@@ -22,24 +21,24 @@ class HomeViewController: UIViewController {
     let collectionIcon = UIImage(systemName: "squareshape.split.3x3")
     var viewModel = HomeViewModel()
     func layoutDynamicCell(isLG:Int,ld:NSCollectionLayoutSpacing?)->UICollectionViewLayout{
-
+        
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .estimated(44))
-         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: ld, top: .fixed(8), trailing: nil, bottom: .fixed(8))
-         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .estimated(50))
-         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                        subitem: item,count: isLG)
-
-         let section = NSCollectionLayoutSection(group: group)
-
-         let layout = UICollectionViewCompositionalLayout(section: section)
-         return layout
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                       subitem: item,count: isLG)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
         title = "HOME"
         addItem = UIBarButtonItem(title: "add", style: .plain, target: self, action: #selector(addAction))
         changeList = UIBarButtonItem(title: "change", style: .plain, target: self, action: #selector(changeAction))
@@ -86,9 +85,10 @@ class HomeViewController: UIViewController {
         print("taped changeList")
         if isChange{
             isChange = false
+            myCollectionView.reloadData()
             changeList.image = listIcon
             myCollectionView.collectionViewLayout = layoutDynamicCell(isLG: 2,ld: .fixed(5))
-            myCollectionView.reloadData()
+            
         }else{
             isChange = true
             changeList.image = collectionIcon
@@ -98,22 +98,33 @@ class HomeViewController: UIViewController {
     }
     @objc func editAction(_ button:UIBarButtonItem!) {
         print("taped editItem")
-        print("reloadk\(viewModel.isReload)")
+        
         if stateBtn == 0 {
             stateBtn = 1
             btnSync.isEnabled = false
             btnSync.setTitle("delete", for: .normal)
+            
+            myCollectionView.reloadData()
         }else{
             stateBtn = 0
             btnSync.isEnabled = true
             btnSync.setTitle("sync", for: .normal)
+            myCollectionView.reloadData()
         }
         
         
     }
     @IBAction func getAction(_ sender: Any) {
-        print("sync")
-        getData()
+        
+        
+        if stateBtn == 0{
+            print("sync")
+            getData()
+        }else{
+            print("delete")
+            showAlert()
+            
+        }
     }
     @objc func delItem(sender:UIButton){
         
@@ -127,6 +138,25 @@ class HomeViewController: UIViewController {
         
         
     }
+    func multiDelete(){
+        var arrI = [Int]()
+        for (i,e) in viewModel.persons.enumerated(){
+            if !e.isImg{
+                arrI.append(i)
+            }
+        }
+        if arrI.count > 0{
+           
+            let arrayR = viewModel.persons
+                .enumerated()
+                .filter { !arrI.contains($0.offset) }
+                .map { $0.element }
+            viewModel.persons = arrayR
+            stateBtn = 0
+            btnSync.setTitle("sync", for: .normal)
+            myCollectionView.reloadData()
+        }
+    }
     func getData(){
         viewModel.loadAPI { (done, msg) in
             if done {
@@ -136,6 +166,23 @@ class HomeViewController: UIViewController {
                 print("API ERROR: \(msg)")
             }
         }
+    }
+    func showAlert(){
+        let alert = UIAlertController(title: "Delete",
+                                      message: "ban co muon xoa?",
+                                      preferredStyle: .alert)
+
+
+         // Add action buttons to it and attach handler functions if you want to
+
+         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {_ in
+            self.multiDelete()
+        }))
+
+        // Show the alert by presenting it
+
+        self.present(alert, animated: true)
     }
     
     
@@ -150,12 +197,29 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = myCollectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell
         //        cell.btnDel.tag = indexPath.row
         //        cell.subTitle.text = viewModel.persons[indexPath.row].subtitle
+        
+        switch stateBtn {
+        case 0:
+            cell.imgDelete.isHidden = true
+        case 1:
+            cell.imgDelete.isHidden = false
+            if viewModel.persons[indexPath.row].isImg{
+                cell.imgDelete.image = UIImage(systemName: "poweroff")
+            }else{
+                cell.imgDelete.image = UIImage(systemName: "checkmark.circle")
+            }
+            
+            
+            
+        default:
+            print("loi tai cellForItemAt")
+        }
         cell.lblSub?.text = viewModel.persons[indexPath.row].subtitle
         cell.lblTitle?.text = viewModel.persons[indexPath.row].title
-                        if let url = URL(string:viewModel.persons[indexPath.row].image){
-                            cell.imgAvatar.load(url: url)
-                            
-                                  }
+        if let url = URL(string:viewModel.persons[indexPath.row].image){
+            cell.imgAvatar.imageFromServerURL(url: url, PlaceHolderImage: UIImage(systemName: "person.fill.questionmark")!)
+            
+        }
         
         //        cell.btnDel.addTarget(self, action: #selector(delItem), for: .touchUpInside)
         return cell
@@ -163,13 +227,23 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath)
+        switch stateBtn {
+        case 0:
+            let vc = AddViewController()
+            vc.isScr = false
+            viewModel.idxPath = indexPath
+            vc.viewModel = viewModel
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 1:
+            viewModel.persons[indexPath.row].isImg = !viewModel.persons[indexPath.row].isImg
+            myCollectionView.reloadItems(at: [indexPath])
+            btnSync.isEnabled = true
+        default:
+            print("loi tai didSelectItemAt")
+        }
         
-        let vc = AddViewController()
-        vc.isScr = false
-        viewModel.idxPath = indexPath
-        vc.viewModel = viewModel
-        self.navigationController?.pushViewController(vc, animated: true)
         
     }
-
+    
+    
 }

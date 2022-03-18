@@ -80,14 +80,13 @@
 		B4C311B027E0212800A43E3A /* training_ios */ = {
 			isa = PBXGroup;
 			children = (
+				B4F3D65D27E46AD500E67CC6 /* ViewController */,
 				B4CB1ADB27E103360059097F /* Model */,
 				B4CB1AD827E1030E0059097F /* APIManager */,
 				B4C311DD27E083E900A43E3A /* AddView */,
-				B4C311D327E05D7600A43E3A /* HomeView */,
 				B4C311D027E04F1700A43E3A /* SaveFileToDocuments */,
 				B4C311CD27E0432A00A43E3A /* KeychainManager */,
 				B4C311CA27E02E0400A43E3A /* UserDefaultsManager */,
-				B4C311C527E022CA00A43E3A /* SaveData */,
 				B4C311B127E0212800A43E3A /* AppDelegate.swift */,
 				B4C311BA27E0212900A43E3A /* Assets.xcassets */,
 				B4C311BF27E0212900A43E3A /* Info.plist */,
@@ -173,6 +172,15 @@
 				B4CB1ADC27E103530059097F /* Person.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B4F3D65D27E46AD500E67CC6 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B4C311C527E022CA00A43E3A /* SaveData */,
+				B4C311D327E05D7600A43E3A /* HomeView */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -33,7 +33,7 @@ class AddViewController: UIViewController {
             if viewModel.idxPath.row < viewModel.persons.count{
                 let data = viewModel.persons[viewModel.idxPath.row]
                 if let url = URL(string:data.image){
-                    imgAvatar.load(url: url)
+                    imgAvatar.imageFromServerURL(url: url, PlaceHolderImage: UIImage(systemName: "person.fill.questionmark")!)
                 }
                 tfLinkImage.text = data.image
                 tfTitle.text = data.title

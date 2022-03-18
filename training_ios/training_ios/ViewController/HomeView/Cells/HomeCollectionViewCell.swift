@@ -10,6 +10,7 @@ import UIKit
 class HomeCollectionViewCell: UICollectionViewCell {
 
 
+    @IBOutlet weak var imgDelete: UIImageView!
     @IBOutlet weak var imgAvatar: UIImageView!
     @IBOutlet weak var lblSub: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
@@ -17,6 +18,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         config()
         imgAvatar.makeRounded()
+        imgDelete.image = UIImage(systemName: "poweroff")
     }
     func config(){
             self.clipsToBounds = false
