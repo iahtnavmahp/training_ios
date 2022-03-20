@@ -124,13 +124,18 @@ class HomeViewController: UIViewController {
     }
     func multiDelete(){
         var arrI = [Int]()
-        for (i,e) in viewModel.persons.enumerated(){
-            if !e.isImg{
+        for (i,e) in viewModel.arrCheck.enumerated(){
+            if !e{
                 arrI.append(i)
             }
         }
         if arrI.count > 0{
             
+            let arrayK = viewModel.arrCheck
+                .enumerated()
+                .filter { !arrI.contains($0.offset) }
+                .map { $0.element }
+            viewModel.arrCheck = arrayK
             let arrayR = viewModel.persons
                 .enumerated()
                 .filter { !arrI.contains($0.offset) }
@@ -140,6 +145,15 @@ class HomeViewController: UIViewController {
             btnSync.setTitle("sync", for: .normal)
             myCollectionView.reloadData()
         }
+    }
+    func unCheck(){
+        viewModel.arrCheck.removeAll()
+        for _ in viewModel.persons{
+            viewModel.arrCheck.append(true)
+        }
+        stateBtn = 0
+        btnSync.setTitle("sync", for: .normal)
+        myCollectionView.reloadData()
     }
     func getData(){
         viewModel.loadAPI { (done, msg) in
@@ -156,7 +170,9 @@ class HomeViewController: UIViewController {
                                       message: "ban co muon xoa?",
                                       preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {_ in
+            self.unCheck()
+        }))
         alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {_ in
             self.multiDelete()
         }))
@@ -197,14 +213,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.imgDelete.isHidden = true
         case 1:
             cell.imgDelete.isHidden = false
-            if viewModel.persons[indexPath.row].isImg{
+            if viewModel.arrCheck[indexPath.row]{
                 cell.imgDelete.image = UIImage(systemName: "poweroff")
             }else{
                 cell.imgDelete.image = UIImage(systemName: "checkmark.circle")
             }
-            
-            
-            
+         
         default:
             print("loi tai cellForItemAt")
         }
@@ -229,7 +243,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             vc.viewModel = viewModel
             self.navigationController?.pushViewController(vc, animated: true)
         case 1:
-            viewModel.persons[indexPath.row].isImg = !viewModel.persons[indexPath.row].isImg
+            viewModel.arrCheck[indexPath.row] = !viewModel.arrCheck[indexPath.row]
             myCollectionView.reloadItems(at: [indexPath])
             btnSync.isEnabled = true
         default:
